@@ -16,6 +16,8 @@ RUN DEBIAN_FRONTEND=noninteractive; \
     apt-get install -y \
       git \
       tini \
+      createrepo \
+      vim \
       rsync \
       sshpass \
       python3-pip \
