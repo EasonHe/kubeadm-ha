@@ -6,6 +6,9 @@
     enabled: no
     gpgcheck: no
     state: present
+    
+- name:  yum 清理和载入数据
+  shell: "yum clean all && yum makecache"
 
 - name: "安装 kubeadm-{{ kube_upgrade_version }}"
   yum:
