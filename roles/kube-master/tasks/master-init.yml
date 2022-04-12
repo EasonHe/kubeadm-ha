@@ -15,7 +15,7 @@
   with_items: "{{ kube_image_list.stdout_lines }}"
 
 - name: 初始化第一个 master 节点
-  shell: kubeadm init --config=/etc/kubernetes/kubeadm-config.yaml --ignore-preflight-errors=ImagePull
+  shell: source  /etc/profile && kubeadm init --config=/etc/kubernetes/kubeadm-config.yaml --ignore-preflight-errors=ImagePull
 
 - include_tasks: "{{ (role_path + '/../kube-certificates/tasks/kubeconfig.yml') | realpath  }}"
 
