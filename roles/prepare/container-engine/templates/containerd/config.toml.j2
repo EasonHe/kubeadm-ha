@@ -38,6 +38,13 @@ oom_score = {{ containerd_oom_score }}
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."{{ registry }}"]
           endpoint = ["{{ ([ addr ] | flatten ) | join('","') }}"]
 {% endfor %}
+    [plugins."io.containerd.grpc.v1.cri".registry.configs]
+      [plugins."io.containerd.grpc.v1.cri".registry.configs."myregistry.domain.com:5000".tls]
+        insecure_skip_verify = true  #跳过证书
+        #使用证书ca_file = "/root/ssl/k8s.com/ca.crt" #配置证书
+      [plugins."io.containerd.grpc.v1.cri".registry.configs."myregistry.domain.com:5000".auth]
+        username = "testuser"
+        password = "testpassword"
 
 {% if containerd_extra_args is defined %}
 {{ containerd_extra_args }}
